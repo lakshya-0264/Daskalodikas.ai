@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ProblemSettingPage from './components/ProblemSettingPage';
-import ConversationPage from './components/ConversationPage';
+import ProblemSettingPage from './components/ProblemSettingPage'; // Updated path
+import ConversationPage from './components/ConversationPage';     // Updated path
 
 function App() {
   return (
@@ -9,6 +9,8 @@ function App() {
       <Routes>
         <Route path="/" element={<ProblemSettingPage />} />
         <Route path="/conversation" element={<ConversationPage />} />
+        {/* Optional: 404 page */}
+        <Route path="*" element={<div>Page Not Found</div>} />
       </Routes>
     </Router>
   );
