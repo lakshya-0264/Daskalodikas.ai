@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8000',  // Your FastAPI backend URL
+        target: 'https://daskalodikasai-fastapi-server.onrender.com',  // Your FastAPI backend URL
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
