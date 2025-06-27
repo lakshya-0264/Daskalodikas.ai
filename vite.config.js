@@ -9,7 +9,6 @@ export default defineConfig({
       '': {
         target: 'https://daskalodikasai-fastapi-server.onrender.com',  // Your FastAPI backend URL
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
