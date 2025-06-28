@@ -12,7 +12,7 @@ function ProblemSettingPage() {
   useEffect(() => {
     async function createSession() {
       try {
-        const response = await fetch('/api/create_session', {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/create_session`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
         });
@@ -42,7 +42,7 @@ function ProblemSettingPage() {
     setError('');
 
     try {
-      const response = await fetch('/api/set_problem', {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/set_problem`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
