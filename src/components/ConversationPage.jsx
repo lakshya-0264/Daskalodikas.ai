@@ -27,7 +27,7 @@ function ConversationPage() {
   const fetchInitialQuestion = async (user_id, session_id) => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/get_tutor_question', {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/get_tutor_question`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -68,7 +68,7 @@ function ConversationPage() {
 
     try {
       // Process answer
-      const processResponse = await fetch('/api/process_answer', {
+      const processResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/process_answer`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -94,7 +94,7 @@ function ConversationPage() {
       }
       
       // Get next question
-      const questionResponse = await fetch('/api/get_tutor_question', {
+      const questionResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/get_tutor_question`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
