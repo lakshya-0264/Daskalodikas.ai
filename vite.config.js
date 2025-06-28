@@ -6,14 +6,14 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
-    server: {
-      proxy: {
+    if (mode === 'development') {
+      server.proxy = {
         '/api': {
           target: env.VITE_BACKEND_URL || 'http://127.0.0.1:8000',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         },
-      },
-    },
+      };
+    }
   };
 });
