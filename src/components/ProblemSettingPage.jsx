@@ -45,19 +45,19 @@ function ProblemSettingPage() {
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/set_problem`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          user_id: userId, 
-          session_id: sessionId, 
-          problem 
+        body: JSON.stringify({
+          user_id: userId,
+          session_id: sessionId,
+          problem
         }),
       });
-      
+
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
         throw new Error(errorData.detail || 'Failed to set problem');
       }
-      
-      const data = await response.json();
+
+      await response.json();
       navigate('/conversation');
     } catch (err) {
       setError('Failed to set problem. Please try again.');
@@ -68,27 +68,35 @@ function ProblemSettingPage() {
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
-      <h2>Set Your DSA Problem</h2>
-      {error && <div style={{ color: 'red', marginBottom: '10px' }}>{error}</div>}
-      <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>
-        <input
-          type="text"
-          value={problem}
-          onChange={(e) => setProblem(e.target.value)}
-          placeholder="Enter your problem"
-          required
-          disabled={isLoading}
-          style={{ width: '100%', padding: '10px', marginBottom: '10px' }}
-        />
-        <button
-          type="submit"
-          disabled={isLoading}
-          style={{ padding: '10px 20px', background: '#4CAF50', color: 'white', border: 'none', borderRadius: '4px' }}
-        >
-          {isLoading ? 'Starting...' : 'Start Tutoring'}
-        </button>
-      </form>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 px-4">
+      <div className="w-full max-w-lg bg-white p-8 rounded-2xl shadow-2xl flex flex-col gap-6">
+        <h2 className="text-2xl font-bold text-center text-gray-800">Set Your DSA Problem</h2>
+
+        {error && (
+          <div className="bg-red-100 text-red-700 px-4 py-2 rounded shadow text-sm">
+            ⚠️ {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            value={problem}
+            onChange={(e) => setProblem(e.target.value)}
+            placeholder="Enter your problem"
+            required
+            disabled={isLoading}
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50"
+          />
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition disabled:opacity-50"
+          >
+            {isLoading ? 'Starting...' : 'Start Tutoring'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
